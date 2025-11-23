@@ -1,0 +1,15 @@
+name: 5 - 2 - Event Filters and Activity Types
+on:
+  pull_request: 
+    types:
+      - closed
+      - synchronize
+    branches: 
+      - main
+
+jobs:
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo the event name
+        run: echo "Running whenever a PR is closed or synchronize and branch is main"
