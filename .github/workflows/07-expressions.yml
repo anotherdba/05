@@ -1,5 +1,6 @@
 name:  07 - Using Expressions
 on:
+  push:
   workflow_dispatch:
     inputs:
       debug:
@@ -12,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "[debug] Print start-up data"
-        if: ${{ github.event.inputs.debug }} == true
+        if: ${{ github.event.inputs.debug }}
         run: |
           echo "Debug mode is enabled"
           echo "Event name: ${{ github.event_name }}"
@@ -23,7 +24,7 @@ jobs:
           echo "SHA: ${{ github.sha }}"
           echo "Run number: ${{ github.run_number }}"
       - name: "[debug] Print when triggered"
-        if: ${{ github.event.inputs.debug }} == true]"
+        if: ${{ github.event.inputs.debug && github.ref == 'ref/heads/main'}}"
         run: echo "I was triggered from main"
       - name: "Greeting"
         run: echo "Hello, ${{ github.actor }}! Welcome to the world of GitHub Actions."
