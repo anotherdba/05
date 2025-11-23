@@ -2,8 +2,8 @@ name: 06-contexts
 on:
   workflow_dispatch:
 
-env:
-  MY_VARIABLE: "Hello, World!"
+# env:
+#   MY_VARIABLE: ${{ vars.MY_VAR }}
 
 jobs:
 
@@ -21,5 +21,6 @@ jobs:
           echo "The run number is: ${{ github.run_number }}"
 
       - name: Retrieve Variable
-        run: echo "The value of MY_VARIABLE is: ${{ env.MY_VARIABLE }}"
+        run: |
+          echo "The value of MY_VARIABLE is: ${{ vars.MY_VAR }}"
      
