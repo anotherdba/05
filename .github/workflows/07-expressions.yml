@@ -16,7 +16,7 @@ jobs:
         if: ${{ inputs.debug }}
         run: |
           echo "Debug mode is enabled"
-          echo "inputs.debug - 1 : ${{ github.event.inputs.debug }}"
+          echo "inputs.debug - 1 : ${{ inputs.debug }}"
           echo "Event name: ${{ github.event_name }}"
           echo "Workflow name: ${{ github.workflow }}"
           echo "Actor: ${{ github.actor }}"
@@ -25,7 +25,7 @@ jobs:
           echo "SHA: ${{ github.sha }}"
           echo "Run number: ${{ github.run_number }}"
       - name: "[debug] Print when triggered"
-        if: ${{ inputs.debug == true && github.ref == 'refs/heads/main'}}"
+        if: ${{ inputs.debug  && github.ref == 'refs/heads/main'}}"
         run: |
           echo "inputs.debug - 1 : ${{ inputs.debug }}"
           echo "Ref: ${{ github.ref }}"
