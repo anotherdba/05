@@ -1,0 +1,46 @@
+name: 08 - Using Variables
+on:
+  push:
+  workflow_dispatch:
+    inputs:
+      debug:
+        description: 'Enable debug mode'
+        type: boolean
+        default: false
+
+env:
+  WORKFLOW_VAR: "I am a workflow var!"
+  OVERWRITTEN_VAR: "workflow"
+
+jobs:
+  echo:
+    runs-on: ubuntu-latest
+    env:
+      JOB_VAR: "I am a job env variable"
+      OVERWRITTEN_VAR: "job"
+    steps:
+      - name: Print Env Variables
+        env:
+          STEP_VAR: "I am a step variable"
+          STEP_VAR2: "I am another step variable"
+      - name: Print env Variables
+        run: |
+          echo "Step variable: ${{ env.STEP_VAR }}"
+          echo "Another step variable: ${{ env.STEP_VAR2 }}
+          echo "Job env var: ${{ env.JOB_VAR }}"
+          echo "Workflow env var: ${{ env.WORKFLOW_VAR }}"
+      #   run: |
+      #     echo "Workflow variable: $WORKFLOW_VAR"
+      #     echo "Job variable: $JOB_VAR"
+      #     echo "Overwritten variable: $OVERWRITTEN_VAR"
+      # - name: Display Debug Info
+      #   if: ${{ inputs.debug }}
+      #   run: |
+      #     echo "Debug mode is enabled"
+      #     echo "Event name: ${{ github.event_name }}"
+      #     echo "Workflow name: ${{ github.workflow }}"
+      #     echo "Actor: ${{ github.actor }}"
+      #     echo "Repository: ${{ github.repository }}"
+      #     echo "Ref: ${{ github.ref }}"
+      #     echo "SHA: ${{ github.sha }}"
+      #     echo "Run number: ${{ github.run_number }}"
