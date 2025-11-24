@@ -23,7 +23,6 @@ jobs:
         env:
           STEP_VAR: "I am a step variable"
           STEP_VAR2: "I am another step variable"
-      - name: Print env Variables
         run: |
           echo "Step variable: ${{ env.STEP_VAR }}"
           echo "Another step variable: ${{ env.STEP_VAR2 }}
