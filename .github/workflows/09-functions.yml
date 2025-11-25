@@ -20,3 +20,19 @@ jobs:
 
       - name:  Sleep for 20 seconds
         run: sleep 20
+      
+      - name: Print PR title
+        if: github.event_name == 'pull_request'
+        run: |
+          echo "The PR title is: ${{ github.event.pull_request.title }}"
+
+      - name: Print PR Labels
+        if: github.event_name == 'pull_request'
+        run: |
+          echo "The PR labels are:"
+          for label in "${{ toJson(github.event.pull_request.labels) }}"; do
+            echo "$label"
+          done
+      
+      # - name: bug step
+      #   if: ${{ toJson(github.event.pull_request.labels) }} 
